@@ -13,12 +13,14 @@
 .bs-example {
 	margin-bottom: 20px;
 	margin-left: 20px;
-	margin-right: 60px;
+	margin-right: 40px;
 	margin-top: 20px;
 }
 </style>
 </head>
 <body>
+	<c:import url="nav_top.jsp"></c:import>
+	
 	<div class="bs-example">
 		<form class="form-horizontal" action="/examples/actions/confirmation.php" method="post">
 			<div class="form-group">
@@ -52,8 +54,12 @@
 			<div class="form-group">
 				<div class="col-xs-offset-2 col-xs-10">
 					<a href="<c:url value='/boards'/>" class="btn btn-primary">List</a>
-					<a href="<c:url value='/boards/delete/${board.id }'/>" class="btn btn-primary">Delete</a>
-					<a href="<c:url value='/boards/update/${board.id }'/>" class="btn btn-primary">Update</a>
+					<c:if test="${not empty user }">
+						<c:if test="${user.email == board.writer }">
+							<a href="<c:url value='/boards/delete/${board.id }'/>" class="btn btn-primary">Delete</a>
+							<a href="<c:url value='/boards/update/${board.id }'/>" class="btn btn-primary">Update</a>
+						</c:if>
+					</c:if>
 				</div>
 			</div>
 		</form>

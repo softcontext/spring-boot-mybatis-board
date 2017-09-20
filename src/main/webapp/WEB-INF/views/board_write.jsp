@@ -13,12 +13,14 @@
 .bs-example {
 	margin-bottom: 20px;
 	margin-left: 20px;
-	margin-right: 60px;
+	margin-right: 40px;
 	margin-top: 20px;
 }
 </style>
 </head>
 <body>
+	<c:import url="nav_top.jsp"></c:import>
+	
 	<div class="bs-example">
 		<form class="form-horizontal" action="<c:url value='/boards/write'/>" method="post">
 			<div class="form-group">

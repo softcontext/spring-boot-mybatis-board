@@ -19,16 +19,18 @@
 </style>
 </head>
 <body>
+	<c:import url="nav_top.jsp"></c:import>
+
 	<div class="bs-example">
 		<h2>Board</h2>
 		<table class="table table-condensed table-hover table-striped">
 			<thead>
 				<tr>
-					<th class="col-sm-1 col-md-1 col-lg-1">No</th>
-					<th class="col-sm-6 col-md-6 col-lg-6">Title</th>
-					<th class="col-sm-2 col-md-2 col-lg-2">Writer</th>
-					<th class="col-sm-2 col-md-2 col-lg-2">Date</th>
-					<th class="col-sm-1 col-md-1 col-lg-1">Hits</th>
+					<th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">No</th>
+					<th class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Title</th>
+					<th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Writer</th>
+					<th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Date</th>
+					<th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Hits</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,7 +46,7 @@
 			</tbody>
 		</table>
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<ul class="pagination">
 					<c:set var="target" value="boards" />
 					<c:if test="${pager.rows==0 }">
@@ -78,7 +80,7 @@
 					</c:if>
 				</ul>
 			</div>
-			<div class="col-md-4">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 				<span class="pull-right"> <a href="<c:url value='/boards/write'/>" class="btn btn-primary">Write</a>
 				</span>
 			</div>
