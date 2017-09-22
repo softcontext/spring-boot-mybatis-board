@@ -37,7 +37,7 @@
 				<c:forEach items="#{boards }" var="board">
 					<tr>
 						<td>${board.id }</td>
-						<td><a href="<c:url value='/boards/${board.id }'/>">${board.title }</a></td>
+						<td><a href="<c:url value='/boards/view/${board.id }'/>">${board.title }</a></td>
 						<td>${board.writer }</td>
 						<td><fmt:formatDate pattern="MM-dd hh:mm" value="${board.regDate }" /></td>
 						<td>${board.hitCount }</td>

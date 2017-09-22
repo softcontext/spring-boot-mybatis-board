@@ -40,7 +40,7 @@ public class BoardController {
 		return mav;
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/view/{id}")
 	public ModelAndView getBoardView(@PathVariable long id) {
 		boardMapper.increment(id);
 		ModelAndView mav = new ModelAndView("board_view");
@@ -52,7 +52,7 @@ public class BoardController {
 	public String getInsertView(HttpSession session, Model model) {
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
-			return session.getServletContext().getContextPath() + "/login";
+			return "redirect:/login";
 		}
 		model.addAttribute("user", user);
 		return "board_write";
@@ -65,10 +65,9 @@ public class BoardController {
 		if (user != null && board != null) {
 			if (user.getEmail().equals(board.getWriter())) {
 				boardMapper.insert(board);
-				return "redirect:" + session.getServletContext().getContextPath() + "/boards";
 			}
 		}
-		return session.getServletContext().getContextPath() + "/boards";
+		return "redirect:/boards";
 	}
 	
 	@GetMapping("/update/{id}")
@@ -82,7 +81,7 @@ public class BoardController {
 				return "board_update";
 			}
 		}
-		return session.getServletContext().getContextPath() + "/boards";
+		return "redirect:/boards";
 	}
 	
 	@PostMapping("/update")
@@ -92,10 +91,10 @@ public class BoardController {
 		if (user != null && board != null) {
 			if (user.getEmail().equals(board.getWriter())) {
 				boardMapper.update(board);
-				return "redirect:" + session.getServletContext().getContextPath() + "/boards/" + board.getId();
+				return "redirect:/boards/view/" + board.getId();
 			}
 		}
-		return session.getServletContext().getContextPath() + "/boards";
+		return "redirect:/boards";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -107,10 +106,9 @@ public class BoardController {
 			
 			if (user.getEmail().equals(board.getWriter())) {
 				boardMapper.delete(id);
-				return "redirect:" + session.getServletContext().getContextPath() + "/boards";
 			}
 		}
-		return session.getServletContext().getContextPath() + "/boards";
+		return "redirect:/boards";
 	}
 	
 }

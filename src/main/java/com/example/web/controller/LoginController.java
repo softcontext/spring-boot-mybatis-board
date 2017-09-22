@@ -31,6 +31,7 @@ public class LoginController {
 	@PostMapping("/login")
 	public String postLogin(Login login, Model model, HttpSession session) {
 		loginService.authenticate(login);
+		
 		if (login.getError() != null) {
 			model.addAttribute("error", login.getError());
 			model.addAttribute("login", login);
@@ -38,7 +39,7 @@ public class LoginController {
 		} else {
 			User user = new User(login.getEmail(), login.getPassword());
 			session.setAttribute("user", user);
-			return "redirect:" + session.getServletContext().getContextPath() + "/boards";
+			return "redirect:/boards";
 		}
 	}
 

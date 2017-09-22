@@ -31,9 +31,11 @@ public class UserController {
 	
 	@PostMapping("/enroll")
 	public String postUser(User user, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
-		// 클라이언트 단 또는 서버 단에서 데이터 밸리드 체크를 적용하는 것을 권장한다.
+		// 1.클라이언트 단 또는 서버 단에서 데이터 밸리드 체크를 적용하는 것을 권장한다.
+		// 1.이미 등록된 유저인지 중복체크를 선행한다.
 		userMapper.insert(user);
+		
 		redirectAttributes.addFlashAttribute("result", "OK");
-		return "redirect:" + session.getServletContext().getContextPath() + "/login";
+		return "redirect:/login";
 	}
 }
